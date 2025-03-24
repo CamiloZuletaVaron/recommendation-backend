@@ -1,0 +1,6 @@
+numpy
+flask
+pandas
+scikit-learn
+pycryptodome
+scikit-surprise

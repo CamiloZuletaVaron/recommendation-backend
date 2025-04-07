@@ -4,30 +4,28 @@ FROM python:3.9-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies including CIFS utils for mounting
+# Install build essentials for Python packages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
-    cifs-utils \
     && rm -rf /var/lib/apt/lists/*
-
-# Create mount point
-RUN mkdir -p /models
 
 # Copy and install requirements
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install blobfuse
 
 # Copy application file
-COPY . .
+COPY app.py .
 
 # Clean up
 RUN apt-get purge -y --auto-remove build-essential
 
-# Configure app
+# Set environment variables for Azure Web App
 ENV PORT=80
-ENV MODEL_PATH=/models/moviesModel.pkl
+ENV RECOMMENDATION_MODEL_PATH=/home/model/moviesModel.pkl
+
+# Create the mount directory that Azure Web App will use
+RUN mkdir -p /home/model
 
 # Expose port 80
 EXPOSE 80

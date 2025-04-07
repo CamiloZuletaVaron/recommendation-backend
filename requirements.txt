@@ -1,6 +1,6 @@
-numpy
+numpy<2.0
 flask
 pandas
 scikit-learn
-pycryptodome
 scikit-surprise
+python-dotenv

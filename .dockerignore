@@ -1,0 +1,24 @@
+# Python virtual environment
+.venv/
+
+# Git
+.git/
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Model files (since we're mounting them as a volume)
+*.pkl
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# IDE and system files
+.vscode/
+.idea/
+.DS_Store
